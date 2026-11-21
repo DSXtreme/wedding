@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+/* Override Tailwind's default sans font family with Agrave Pro globally */
+@theme {
+  --font-sans: var(--font-agrave), sans-serif;
+  --font-agrave: var(--font-agrave), sans-serif;
+}
+
+@layer base {
+  *, ::before, ::after {
+    font-family: var(--font-agrave), sans-serif;
+  }
+}
+
+:root {
+  --bg-color: #f7f7f7;
+  --primary-color: #ba964c;
+  --text-color: #373737;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-agrave), sans-serif;
+}
+
+h1{
+  font-size: 10rem;
+}
