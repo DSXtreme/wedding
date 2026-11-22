@@ -41,9 +41,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="min-h-full flex flex-col font-sans">
         {children}
-        <footer className="fixed bottom-2 left-4 flex gap-1">
+        <footer className="fixed bottom-2 left-4 flex gap-1 z-20">
           <img src="/location.png" alt="loc" className="h-[15px] w-auto relative top-1" />
-          <Link href={"https://www.google.com/maps/place/Hotel+Rajarhat+Palace-Banquet+%26+Lodging/@26.3510875,89.4063157,17z/data=!3m1!4b1!4m6!3m5!1s0x39e2ff0059f7f6b7:0xfe148b625b8ffa4e!8m2!3d26.3510875!4d89.4088906!16s%2Fg%2F11wb89049s?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"}>
+          <Link className="hover:cursor-pointer" href={"https://www.google.com/maps/place/Hotel+Rajarhat+Palace-Banquet+%26+Lodging/@26.3510875,89.4063157,17z/data=!3m1!4b1!4m6!3m5!1s0x39e2ff0059f7f6b7:0xfe148b625b8ffa4e!8m2!3d26.3510875!4d89.4088906!16s%2Fg%2F11wb89049s?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"}>
             Direct me to RajarHat Palace
           </Link> 
         </footer>

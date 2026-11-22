@@ -157,7 +157,7 @@ export default function Home() {
           title="March 28, 2026: The Beginning"
           description="What started as a simple meeting in March 2026 quickly turned into something effortless. From our very first conversation to our first ride together—where roles were quickly assigned: the groom as the rider and the bride as the navigator—we decided to happily get lost on our own sweet adventure. Miles of open road, endless talks, and the quiet realization that we had found our favorite travel partner for life."
           src="/bike.jpeg"
-          maxWidth='600px'
+          // maxWidth='450px'
         />
       </div>
       <div className="mt-[10vh]">
@@ -175,8 +175,8 @@ export default function Home() {
           screenSize={screenSize}
           title="October 30, 2026: Surrounded by Love"
           description="Surrounded by the warmth, laughter, and blessings of our families, October 30th marked our next big step together. From the moment we exchanged rings to the celebrations that followed, every hug and happy tear reminded us how lucky we are to have everyone by our side as we step into forever."
-          src="/eng.jpg"
-          maxWidth="500px"
+          src="/eng.jpeg"
+          maxWidth="450px"
         />
       </div>
 
