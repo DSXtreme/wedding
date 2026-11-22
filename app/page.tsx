@@ -137,7 +137,7 @@ export default function Home() {
         <Card
           screenSize={screenSize}
           title="The Bride-to-Be "
-          description="Back then, this little lady was just living in her own cheerful world, completely unaware of the big plot twist waiting ahead. She had no idea that years later, in March 2026, she’d meet the one she’d choose to share a lifetime of laughter with. "
+          description="Back then, this little girl was just living in her own cheerful world, completely unaware of the big plot twist waiting ahead. She had no idea that years later, in March 2026, she’d meet the one she’d choose to share a lifetime of laughter with. "
           src="/baby_riya.png"
         />
       </div>
