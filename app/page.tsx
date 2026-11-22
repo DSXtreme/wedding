@@ -61,10 +61,15 @@ export default function Home() {
           !showSplash && (
             <Canvas
               camera={{ position: [0, 0, 10], fov: 45 }}
+              dpr={[1, 2]}
+              performance={{ min: 0.5 }} // Automatically scales down performance if the device drops frames
               gl={{
+                powerPreference: "high-performance",
+                antialias: true,
+                stencil: false,
+                depth: true,
                 toneMapping: THREE.ACESFilmicToneMapping,
                 toneMappingExposure: 1.5,
-                antialias: true
               }}
             >
               <Suspense fallback={null}>
@@ -179,8 +184,8 @@ export default function Home() {
         className="w-full relative h-screen px-7 flex justify-center items-center bg-cover bg-center z-10 overflow-hidden"
       >
         <motion.img
-          initial={{  y: 200, opacity: 0 }}
-          whileInView={{  y: 1, opacity: 1 }}
+          initial={{ y: 200, opacity: 0 }}
+          whileInView={{ y: 1, opacity: 1 }}
           viewport={{ amount: 0.3 }}
           transition={{ duration: .6 }}
           src="/Invite.png"
