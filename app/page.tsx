@@ -131,7 +131,7 @@ export default function Home() {
         transition={{ duration: 1, ease: 'easeOut' }}
         className="mt-[200vh] px-20 !text-[4rem] md:!text-[7rem] z-10 relative"
       >
-        And here we go with a small story abotu us...
+        And here we go with a small story about us...
       </motion.h1>
       <div className="mt-[30vh]">
         <Card
