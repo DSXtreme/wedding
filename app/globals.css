@@ -15,7 +15,8 @@
 :root {
   --bg-color: #f7f7f7;
   --primary-color: #ba964c;
-  --text-color: #373737;
+  --text-color-light: #a18244;
+  --text-color: #6e531e;
 }
 
 html, body {

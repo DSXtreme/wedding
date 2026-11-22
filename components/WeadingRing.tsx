@@ -22,15 +22,15 @@ type GLTFResult = GLTF & {
     Gold: THREE.MeshStandardMaterial
     ['Drinking Glass Texture']: THREE.MeshStandardMaterial
   }
-  animations: GLTFAction[]
+  animations: THREE.AnimationClip[]
 }
 
 type ModelProps = {
   scrollTargetRef?: React.RefObject<HTMLElement | null>
-} & JSX.IntrinsicElements['group']
+} & React.JSX.IntrinsicElements['group']
 
 export function Model({ scrollTargetRef, ...props }: ModelProps) {
-  const { nodes, materials } = useGLTF('/weadingRing.glb') as GLTFResult
+  const { nodes, materials } = useGLTF('/weadingRing.glb') as unknown as GLTFResult
   const groupRef = useRef<THREE.Group>(null)
 
   useEffect(() => {
@@ -41,12 +41,12 @@ export function Model({ scrollTargetRef, ...props }: ModelProps) {
 
     // 2. Bind the group's rotation and position using threeEffect and transformValue
     threeEffect(groupRef.current, {
-      z: transformValue(() => progress.get() * 20),
+      z: transformValue(() => progress.get() * 56),
     })
 
     // 360 rotate
     animate(groupRef.current, { rotateY: 360 }, {
-      delay:2,
+      delay:.6,
       duration: 5,
       repeat: Infinity,
       repeatType: "loop", 
@@ -55,9 +55,9 @@ export function Model({ scrollTargetRef, ...props }: ModelProps) {
 
     // inital rotation and position animation
     animate(groupRef.current, { rotateX: [90, 0], z: [-10, 0] }, {
-      delay: 1.5,
-      duration: 1,
-      ease: "linear" 
+      delay: .2,
+      duration: .7,
+      ease: "easeInOut" 
     })
 
 

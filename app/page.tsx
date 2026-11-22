@@ -1,17 +1,17 @@
 'use client'
 
-import { Model } from '@/components/WeadingRing'
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Environment } from '@react-three/drei'
-import * as THREE from 'three'
-import { Suspense, useEffect, useState } from 'react'
-import Splash from '@/components/Splash'
-import { AnimatePresence, motion } from 'framer-motion'
-import { throttle } from 'lodash'
 import Card from '@/components/Cards'
-import { Parallax, ParallaxProvider } from 'react-scroll-parallax'
+import Splash from '@/components/Splash'
+import { Model } from '@/components/WeadingRing'
+import { Environment } from '@react-three/drei'
+import { Canvas } from '@react-three/fiber'
+import { AnimatePresence, motion } from 'framer-motion'
+import { Suspense, useEffect, useState } from 'react'
+import * as THREE from 'three'
 
 export default function Home() {
+
+
 
   const [showSplash, setShowSplash] = useState(true)
   const [scrollProgress, setScrollProgress] = useState<number>(0)
@@ -36,13 +36,14 @@ export default function Home() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrollProgress(window.scrollY)
+      const scrollTop = window.scrollY
+      setScrollProgress(scrollTop)
+
     }
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  console.log("screenSize", screenSize)
   return (
     <div className="w-screen">
       {!showSplash && <div className="fixed w-[100vw] h-full top-0 lef-0 z-0">
@@ -77,7 +78,7 @@ export default function Home() {
               <pointLight position={[0, 3, 2]} intensity={3} color="#bdbdbd" />
 
               <Suspense fallback={null}>
-                <Model scrollProgress={scrollProgress} />
+                <Model />
               </Suspense>
 
             </Canvas>
@@ -93,8 +94,8 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.1 }}
-              className="flex items-center justify-center fixed bottom-56 left-0 right-0 z-50">
-              <div className={"text-bold text-2xl"}>
+              className="flex items-center justify-center fixed bottom-[30vh] left-0 right-0 z-50 ">
+              <div className={"text-bold text-[clamp(1.5rem,1.5vw,2rem)]"}>
                 SCROLL TO BEGIN
               </div>
 
@@ -122,7 +123,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}
-        className="mt-[200vh] px-20 !text-[3rem] md:!text-[7rem] z-1"
+        className="mt-[200vh] px-20 !text-[4rem] md:!text-[7rem] z-10 relative"
       >
         And here we go with a small story abotu us...
       </motion.h1>
@@ -141,21 +142,51 @@ export default function Home() {
           description="Meanwhile, this little guy was busy enjoying his own adventures miles away, clueless that his future was already written. Little did he know, March 2026 would bring him face-to-face with the girl in the photo next to him—turning two separate stories into one."
           src="/baby_subham.png"
           reverse
+          maxWidth='700px'
+        />
+      </div>
+      <div className="mt-[10vh]">
+        <Card
+          screenSize={screenSize}
+          title="March 28, 2026: The Beginning"
+          description="What started as a simple meeting in March 2026 quickly turned into something effortless. From our very first conversation to our first ride together—where roles were quickly assigned: the groom as the rider and the bride as the navigator—we decided to happily get lost on our own sweet adventure. Miles of open road, endless talks, and the quiet realization that we had found our favorite travel partner for life."
+          src="/bike.jpeg"
           maxWidth='600px'
         />
       </div>
       <div className="mt-[10vh]">
         <Card
           screenSize={screenSize}
-          title="March 2026: The Beginning"
-          description="What started as a simple meeting in March 2026 quickly turned into something effortless. From our very first conversation to our first ride together—where roles were quickly assigned: the groom as the rider and the bride as the navigator—we decided to happily get lost on our own sweet adventure. Miles of open road, endless talks, and the quiet realization that we had found our favorite travel partner for life."
-          src="/bike.jpeg"
-          maxWidth='600px'
+          title="October 12, 2026: Chapters in Frame"
+          description="Seven months after our story began, October gave us a chance to pause before the wedding celebrations take over. People say you can’t travel in time, so we chose to freeze these moments in our memories forever—capturing us just as we are, deeply in love and ready for a lifetime together."
+          src="/prewed.jpeg"
+          maxWidth='700px'
+          reverse
+        />
+      </div>
+      <div className="mt-[10vh]">
+        <Card
+          screenSize={screenSize}
+          title="October 30, 2026: Surrounded by Love"
+          description="Surrounded by the warmth, laughter, and blessings of our families, October 30th marked our next big step together. From the moment we exchanged rings to the celebrations that followed, every hug and happy tear reminded us how lucky we are to have everyone by our side as we step into forever."
+          src="/eng.jpg"
+          maxWidth="500px"
         />
       </div>
 
+      <div
 
-
+        className="w-full relative h-screen px-7 flex justify-center items-center bg-cover bg-center z-10 overflow-hidden"
+      >
+        <motion.img
+          initial={{  y: 200, opacity: 0 }}
+          whileInView={{  y: 1, opacity: 1 }}
+          viewport={{ amount: 0.3 }}
+          transition={{ duration: .6 }}
+          src="/Invite.png"
+          className="w-full max-w-[450px] rounded-[1rem] shadow-[0_20px_60px_-10px_rgba(0,0,0,0.3),0_8px_24px_-6px_rgba(0,0,0,0.2)] overflow-clip"
+        />
+      </div>
     </div>
   )
 }

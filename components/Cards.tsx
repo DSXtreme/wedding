@@ -43,7 +43,7 @@ const Card = ({
   return (
     <div
       ref={containerRef}
-      className={`h-fit justify-center  w-full flex flex-col md:flex-row ${reverse ? 'md:flex-row-reverse' : ''} max-w-6xl mx-auto pt-16 pb-32`}
+      className={`h-fit justify-center  w-full flex flex-col md:flex-row ${reverse ? 'md:flex-row-reverse' : ''} max-w-6xl mx-auto pt-16 pb-32 px-12`}
     >
       {/* Left Image */}
       <motion.div
@@ -53,7 +53,8 @@ const Card = ({
         <img
           src={src}
           alt={title}
-          className={`w-[80%] min-w-[300px] max-w-[${maxWidth}] h-auto object-cover rounded-[2rem]`}
+          style={{ maxWidth }}
+          className={`w-[80%] min-w-[300px] h-auto object-cover rounded-[2rem]`}
         />
       </motion.div>
 
@@ -62,8 +63,8 @@ const Card = ({
         style={{ y: textY }}
         className="w-full md:w-1/2 flex flex-col justify-center p-5"
       >
-        <h2 className="text-3xl font-bold mb-4">{title}</h2>
-        <p className="text-lg text-gray-700 leading-relaxed w-500px">{description}</p>
+        <h2 className="text-3xl font-bold mb-4 ">{title}</h2>
+        <p className="text-lg leading-relaxed w-500px text-[var(--text-color-light)]">{description}</p>
       </motion.div>
     </div>
   )
