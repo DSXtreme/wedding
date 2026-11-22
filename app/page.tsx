@@ -27,6 +27,7 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     const timer = setTimeout(() => {
       setShowSplash(false)
     }, 3000)

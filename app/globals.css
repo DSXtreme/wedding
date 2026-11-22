@@ -33,3 +33,8 @@ body {
 h1{
   font-size: 10rem;
 }
+
+a{
+  color: #3a00ea;
+  font-weight: 500;
+}
