@@ -3,7 +3,7 @@
 import Card from '@/components/Cards'
 import Splash from '@/components/Splash'
 import { Model } from '@/components/WeadingRing'
-import { Environment } from '@react-three/drei'
+import { Environment, PerformanceMonitor, Preload   } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import { AnimatePresence, motion } from 'framer-motion'
 import { Suspense, useEffect, useState } from 'react'
@@ -16,6 +16,7 @@ export default function Home() {
   const [showSplash, setShowSplash] = useState(true)
   const [scrollProgress, setScrollProgress] = useState<number>(0)
   const [screenSize, setScreenSize] = useState(0)
+  const [dpr, setDpr] = useState(1.5)
 
   useEffect(() => {
     const handleResize = () => {
@@ -61,8 +62,9 @@ export default function Home() {
         {
           !showSplash && (
             <Canvas
+
               camera={{ position: [0, 0, 10], fov: 45 }}
-              dpr={[1, 2]}
+              dpr={dpr}
               performance={{ min: 0.5 }} // Automatically scales down performance if the device drops frames
               gl={{
                 powerPreference: "high-performance",
@@ -73,19 +75,27 @@ export default function Home() {
                 toneMappingExposure: 1.5,
               }}
             >
-              <Suspense fallback={null}>
-                <Environment preset="studio" />
-              </Suspense>
+              <PerformanceMonitor
+                onIncline={() => setDpr(2)}   // FPS is high: bump up quality
+                onDecline={() => setDpr(1)}   // FPS is low: drop quality
+                onFallback={() => setDpr(1)}  // FPS fluctuates wildly: lock to safe baseline
+              >
+                <Suspense fallback={null}>
+                  <Environment preset="studio" />
+                </Suspense>
 
-              <ambientLight intensity={1.5} />
-              <directionalLight position={[5, 8, 5]} intensity={1.5} />
-              <directionalLight position={[-5, -2, -5]} intensity={1.0} />
+                <ambientLight intensity={1.5} />
+                <directionalLight position={[5, 8, 5]} intensity={1.5} />
+                <directionalLight position={[-5, -2, -5]} intensity={1.0} />
 
-              <pointLight position={[0, 3, 2]} intensity={3} color="#bdbdbd" />
+                <pointLight position={[0, 3, 2]} intensity={3} color="#bdbdbd" />
 
-              <Suspense fallback={null}>
-                <Model />
-              </Suspense>
+                <Suspense fallback={null}>
+                  <Model />
+                </Suspense>
+                <Preload all />
+              </PerformanceMonitor>
+
 
             </Canvas>
           )
@@ -94,7 +104,7 @@ export default function Home() {
       {/* Hint */}
       <AnimatePresence>
         {
-          scrollProgress < .2 && (
+          scrollProgress < 100 && (
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -129,7 +139,7 @@ export default function Home() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1, ease: 'easeOut' }}
-        className="mt-[200vh] px-20 !text-[4rem] md:!text-[7rem] z-10 relative"
+        className="mt-[150vh] px-20 !text-[4rem] md:!text-[7rem] z-10 relative"
       >
         And here we go with a small story about us...
       </motion.h1>
@@ -154,16 +164,16 @@ export default function Home() {
       <div className="mt-[10vh]">
         <Card
           screenSize={screenSize}
-          title="March 28, 2026: The Beginning"
+          title="The Beginning"
           description="What started as a simple meeting in March 2026 quickly turned into something effortless. From our very first conversation to our first ride together—where roles were quickly assigned: the groom as the rider and the bride as the navigator—we decided to happily get lost on our own sweet adventure. Miles of open road, endless talks, and the quiet realization that we had found our favorite travel partner for life."
           src="/bike.jpeg"
-          // maxWidth='450px'
+        // maxWidth='450px'
         />
       </div>
       <div className="mt-[10vh]">
         <Card
           screenSize={screenSize}
-          title="October 12, 2026: Chapters in Frame"
+          title="Chapters in Frame"
           description="Seven months after our story began, October gave us a chance to pause before the wedding celebrations take over. People say you can’t travel in time, so we chose to freeze these moments in our memories forever—capturing us just as we are, deeply in love and ready for a lifetime together."
           src="/prewed.jpeg"
           maxWidth='700px'
@@ -173,7 +183,7 @@ export default function Home() {
       <div className="mt-[10vh]">
         <Card
           screenSize={screenSize}
-          title="October 30, 2026: Surrounded by Love"
+          title="Surrounded by Love"
           description="Surrounded by the warmth, laughter, and blessings of our families, October 30th marked our next big step together. From the moment we exchanged rings to the celebrations that followed, every hug and happy tear reminded us how lucky we are to have everyone by our side as we step into forever."
           src="/eng.jpeg"
           maxWidth="450px"

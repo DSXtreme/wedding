@@ -31,6 +31,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Riya Weds Debmalya",
   description: "Mark The Date 13th Dec 2026",
+   icons: {
+    icon: "/fav.png",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

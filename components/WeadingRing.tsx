@@ -41,7 +41,7 @@ export function Model({ scrollTargetRef, ...props }: ModelProps) {
 
     // 2. Bind the group's rotation and position using threeEffect and transformValue
     threeEffect(groupRef.current, {
-      z: transformValue(() => progress.get() * 56),
+      z: transformValue(() => progress.get() * 86),
     })
 
     // 360 rotate
